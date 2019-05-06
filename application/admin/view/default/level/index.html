@@ -1,0 +1,65 @@
+{{include file="public/header" /}}
+
+<!-- right content start  -->
+<div class="content-right">
+	<div class="content">
+		<!-- form start -->
+		<form class="am-form view-list" action="{{:MyUrl('admin/level/index')}}" method="POST">
+			<div class="am-g">
+				<input type="text" autocomplete="off" class="am-radius form-keyword" placeholder="名称" name="name" {{if !empty($params['name'])}} value="{{$params.name}}"{{/if}} />
+				<button type="submit" class="am-btn am-btn-secondary am-btn-sm am-radius form-submit">查询</button>
+			</div>
+        </form>
+        <!-- form end -->
+
+
+		<!-- operation start -->
+		<div class="am-g m-t-15">
+			<a href="{{:MyUrl('admin/level/saveinfo')}}" class="am-btn am-btn-secondary am-radius am-btn-xs am-icon-plus"> 新增</a>
+		</div>
+		<!-- operation end -->
+
+		<!-- list start -->
+		<table class="am-table am-table-striped am-table-hover am-text-middle m-t-10">
+			<thead>
+				<tr>
+					<th>名称</th>
+					<th>标识</th>
+					<th>级别</th>
+					<th class="am-hide-sm-only">创建时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{if !empty($data)}}
+					{{foreach $data as $v}}
+						<tr id="data-list-{{$v.id}}">
+							<td>{{$v.name}}</td>
+							<td>{{$v.number}}</td>
+							<td class="am-hide-sm-only">{{$v.level}}</td>
+							<td class="am-hide-sm-only">{{:date('Y-m-d H:i:s', $v['add_time'])}}</td>
+							<td>
+								<a href="{{:MyUrl('admin/level/saveinfo', array('id'=>$v['id']))}}">
+									<button class="am-btn am-btn-secondary am-btn-xs am-radius am-icon-edit" > 编辑</button>
+								</a>
+								<button class="am-btn am-btn-danger am-btn-xs am-radius am-icon-trash-o submit-delete" data-url="{{:MyUrl('admin/level/delete')}}" data-id="{{$v.id}}"> 删除</button>
+							</td>
+						</tr>
+					{{/foreach}}
+				{{else /}}
+					<tr><td colspan="5" class="table-no">没有相关数据</td></tr>
+				{{/if}}
+			</tbody>
+		</table>
+		<!-- list end -->
+
+		<!-- page start -->
+		{{if !empty($data)}}
+			{{$page_html|raw}}
+		{{/if}}
+		<!-- page end -->
+	</div>
+</div>
+<!-- right content end  -->
+
+{{include file="public/footer" /}}

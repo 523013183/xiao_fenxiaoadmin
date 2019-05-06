@@ -1,0 +1,41 @@
+{{include file="public/header" /}}
+<!-- right content start  -->
+<div class="content-right">
+	<div class="content">
+		<!-- form start -->
+		<form class="am-form form-validation view-save" action="{{:MyUrl('admin/level/save')}}" method="POST" request-type="ajax-url" request-value="{{:MyUrl('admin/level/index')}}">
+			<legend>
+				<span class="fs-16">
+					{{if empty($data['id'])}}
+						层级添加
+					{{else /}}
+						层级编辑
+					{{/if}}
+				</span>
+				<a href="{{:MyUrl('admin/level/index')}}" class="fr fs-14 m-t-5 am-icon-mail-reply"> 返回</a>
+			</legend>
+			<div class="am-form-group">
+				<label>名称</label>
+				<input type="text" placeholder="名称" name="name" class="am-radius" {{if !empty($data)}}value="{{$data.name}}"{{/if}} required />
+			</div>
+			<div class="am-form-group">
+				<label>标识</label>
+				<input type="text" placeholder="标识" name="number" class="am-radius" {{if !empty($data)}}value="{{$data.number}}"{{/if}}  required />
+			</div>
+			<div class="am-form-group">
+				<label>级别</label>
+				<input type="number" placeholder="级别" name="level" class="am-radius" {{if !empty($data)}}value="{{$data.level}}"{{/if}}  required />
+			</div>
+			<div class="am-form-group am-form-group-refreshing">
+				<input type="hidden" name="id" {{if !empty($data['id'])}}value="{{$data.id}}"{{/if}} />
+				<button type="submit" class="am-btn am-btn-primary am-radius btn-loading-example am-btn-sm w100" data-am-loading="{loadingText:'处理中...'}">保存</button>
+			</div>
+		</form>
+        <!-- form end -->
+	</div>
+</div>
+<!-- right content end  -->
+		
+<!-- footer start -->
+{{include file="public/footer" /}}
+<!-- footer end -->
