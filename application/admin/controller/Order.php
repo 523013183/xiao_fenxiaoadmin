@@ -62,7 +62,8 @@ class Order extends Common
 
 
         //获取层级id
-        $levelData = Db::name('Level')->where(['admin_id' => $this->admin['id']])->field('id')->select();
+        $levelData = Db::name('Level')->where(['admin_id' => $this->admin['id']])->field('id,name,number,level')->select();
+        $this->assign('level_data', $levelData);
         if (empty($levelData)) {
             //如果不存在层级，则不存在订单
             $this->assign('data_list', []);

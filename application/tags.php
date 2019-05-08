@@ -115,7 +115,6 @@ return array (
   'plugins_service_buy_handle' => 
   array (
     0 => 'app\\plugins\\freightfee\\Hook',
-    1 => 'app\\plugins\\newuserreduction\\Hook',
   ),
 );
 ?>

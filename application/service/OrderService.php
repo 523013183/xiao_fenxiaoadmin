@@ -464,6 +464,9 @@ class OrderService
         if (!empty($params['level_ids'])) {
             $where[] = ['level_id', 'in', $params['level_ids']];
         }
+        if (!empty($params['level_id']) && $params['level_id'] != -1) {
+            $where[] = ['level_id', '=', $params['level_id']];
+        }
         
         // 用户类型
         if(isset($params['user_type']) && $params['user_type'] == 'user')

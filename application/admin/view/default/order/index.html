@@ -39,6 +39,12 @@
 							<option value="{{$v.id}}" {{if isset($params['pay_status']) and $params['pay_status'] eq $v['id']}}selected{{/if}}>{{$v.name}}</option>
 						{{/foreach}}
 					</select>
+					<select name="level_id" class="am-radius c-p m-t-10 m-l-5 param-where">
+						<option value="-1">层级</option>
+						{{foreach $level_data as $v}}
+						<option value="{{$v.id}}" {{if isset($params['level_id']) and $params['level_id'] eq $v['id']}}selected{{/if}}>{{$v.name}}</option>
+						{{/foreach}}
+					</select>
 					<div class="param-date param-where m-l-5">
 						<input type="text" autocomplete="off" name="time_start" class="Wdate am-radius m-t-10" placeholder="起始时间" onclick="WdatePicker({firstDayOfWeek:1,dateFmt:'yyyy-MM-dd HH:mm:ss'})" {{if isset($params['time_start'])}}value="{{$params.time_start}}"{{/if}}/>
 						<span>~</span>
@@ -68,7 +74,7 @@
 					<th>订单金额(元)</th>
 					<th>层级归属</th>
 					<th>更多</th>
-					<th>操作</th>
+					<!--<th>操作</th>-->
 				</tr>
 			</thead>
 			<tbody>
@@ -260,7 +266,7 @@
 									</div>
 								</div>
 							</td>
-							<td class="view-operation">
+							<!--<td class="view-operation">
 								{{if in_array($v['status'], [0])}}
 									<button class="am-btn am-btn-primary am-btn-xs am-radius am-icon-check-circle-o am-btn-block submit-ajax" data-url="{{:MyUrl('admin/order/confirm')}}" data-id="{{$v.id}}" data-value="{{$v.user_id}}" data-view="reload" data-msg="是否操作收货，操作后不可恢复！"> 确认</button>
 								{{/if}}
@@ -280,7 +286,7 @@
 									<button class="am-btn am-btn-danger am-btn-xs am-radius am-icon-trash-o am-btn-block submit-ajax" data-url="{{:MyUrl('admin/order/delete')}}" data-id="{{$v.id}}" data-value="{{$v.user_id}}" data-view="delete" data-msg="删除后无法恢复，确定继续吗？"> 删除</button>
 								{{/if}}
 
-								<!-- 钩子订单操作 -->
+								&lt;!&ndash; 钩子订单操作 &ndash;&gt;
                                 {{if !empty($v['plugins_service_order_handle_operation_html']) and is_array($v['plugins_service_order_handle_operation_html'])}}
                                     {{foreach $v.plugins_service_order_handle_operation_html as $hook}}
                                         {{if is_string($hook) or is_int($hook)}}
@@ -288,7 +294,7 @@
                                         {{/if}}
                                     {{/foreach}}
                                 {{/if}}
-							</td>
+							</td>-->
 						</tr>
 					{{/foreach}}
 				{{else /}}

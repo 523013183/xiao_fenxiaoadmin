@@ -33,6 +33,11 @@ class LevelService
 
         // 获取管理员列表
         $data = Db::name('Level')->where($where)->field($field)->order($order_by)->limit($m, $n)->select();
+        if ($data) {
+            foreach ($data as &$v) {
+                $v['goods_url'] = MyUrl('index/goods/index', ['id'=>13, 'key' => $v['number']]);
+            }
+        }
         return $data;
     }
 
@@ -169,7 +174,11 @@ class LevelService
             'add_time'      => time(),
             'admin_id' => $params['admin_id']
         ];
-
+        //判断标识是否存在
+        $level = Db::name('Level')->where(['number' => trim($params['number'])])->find();
+        if ($level) {
+            return DataReturn('该标识已存在，请重新添加', -100);
+        }
         // 添加
         if(Db::name('Level')->insert($data) > 0)
         {
@@ -215,6 +224,11 @@ class LevelService
             'upd_time'      => time(),
         ];
 
+        //判断标识是否存在
+        $level = Db::name('Level')->where(['number' => trim($params['number'])])->where('id', '<>', intval($params['id']))->find();
+        if ($level) {
+            return DataReturn('该标识已存在，请重新添加', -100);
+        }
         // 更新
         if(Db::name('Level')->where(['id'=>intval($params['id'])])->update($data))
         {

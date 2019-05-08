@@ -1,6 +1,6 @@
 *.html.php
 .DS_Store
-.ide
+.idea/
 *.log
 *.lock
 .tea
