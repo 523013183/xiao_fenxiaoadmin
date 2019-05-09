@@ -128,7 +128,7 @@ class Admin extends Common
 				'm'			=> 0,
 				'n'			=> 1,
 			];
-			$ret = AdminService::AdminList($data_params);
+			$ret = AdminService::AdminList($data_params, $this->admin['id']);
 			if(empty($ret[0]))
 			{
 				return $this->error('管理员信息不存在', MyUrl('admin/index/index'));
