@@ -367,5 +367,7 @@ return array(
 
     // 图片比例值
     'common_regex_image_proportion'     =>  '^([1-9]{1}[0-9]?|[1-9]{1}[0-9]?\.{1}[0-9]{1,2}|100|0)?$',
+
+    'level_regex_number'             =>  '^[A-Za-z0-9_]{1,10}$',
 );
 ?>

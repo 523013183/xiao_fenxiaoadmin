@@ -20,7 +20,7 @@
 			</div>
 			<div class="am-form-group">
 				<label>标识</label>
-				<input type="text" placeholder="标识" name="number" class="am-radius" {{if !empty($data)}}value="{{$data.number}}"{{/if}}  required />
+				<input type="text" placeholder="标识" pattern="{{:lang('level_regex_number')}}" data-validation-message="标识格式 1~10 个字符（可以是字母数字下划线）" name="number" class="am-radius" {{if !empty($data)}}value="{{$data.number}}"{{/if}}  required />
 			</div>
 			<div class="am-form-group">
 				<label>级别</label>

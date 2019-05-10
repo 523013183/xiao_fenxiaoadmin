@@ -52,7 +52,7 @@ class Power extends Common
 		$data_params = [
 			'field'		=> 'id,pid,name,control,action,sort,is_show,icon',
 			'order_by'	=> 'sort asc',
-			'where'		=> ['pid'=>0],
+			'where'		=> ['pid'=>0,'is_show' => 1],
 		];
 		$data = AdminPowerService::PowerList($data_params);
 
